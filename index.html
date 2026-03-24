@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宋美玲 | 新媒体编导</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #FFFEF2;
+            --text-color: #000000;
+            --accent-1: #FF6B6B;
+            --accent-2: #4ECDC4;
+            --accent-3: #FFE66D;
+            --accent-4: #95E1D3;
+            --border-width: 3px;
+            --shadow-offset: 6px;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 导航栏 */
+        .nav {
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+            margin-bottom: 40px;
+            padding: 0;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 20px 30px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-right: var(--border-width) solid #000;
+            transition: all 0.2s ease;
+            background: #FFFFFF;
+        }
+
+        .nav-tab:last-child {
+            border-right: none;
+        }
+
+        .nav-tab:hover {
+            background: var(--accent-3);
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 #000;
+        }
+
+        .nav-tab.active {
+            background: var(--accent-1);
+            color: #FFFFFF;
+            transform: translate(-2px, -2px);
+            box-shadow: 4px 4px 0 #000;
+        }
+
+        /* 内容区域 */
+        .content {
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+            padding: 40px;
+            min-height: 600px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            background: var(--accent-2);
+            display: inline-block;
+            padding: 15px 30px;
+            border: var(--border-width) solid #000;
+            box-shadow: 4px 4px 0 #000;
+        }
+
+        h2 {
+            font-size: 2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 40px 0 20px 0;
+            border-bottom: var(--border-width) solid #000;
+            padding-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* 首页样式 */
+        .hero {
+            text-align: left;
+            padding: 20px 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent-1);
+            color: #FFFFFF;
+            padding: 10px 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: var(--border-width) solid #000;
+            box-shadow: 4px 4px 0 #000;
+            margin-bottom: 30px;
+        }
+
+        .hero-title {
+            font-size: 4em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            word-break: break-word;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5em;
+            background: var(--accent-3);
+            display: inline-block;
+            padding: 15px 25px;
+            border: var(--border-width) solid #000;
+            box-shadow: 4px 4px 0 #000;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--accent-2);
+            color: #000;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: var(--border-width) solid #000;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 #000;
+            background: var(--accent-4);
+        }
+
+        .hero-intro {
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--accent-4);
+            border: var(--border-width) solid #000;
+            box-shadow: 4px 4px 0 #000;
+        }
+
+        /* 关于我样式 */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .about-card {
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+            padding: 25px;
+        }
+
+        .about-card h3 {
+            font-size: 1.5em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            background: var(--accent-3);
+            display: inline-block;
+            padding: 8px 15px;
+            border: var(--border-width) solid #000;
+        }
+
+        .about-card ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .about-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-weight: 600;
+        }
+
+        .about-card li:before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: var(--accent-1);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            padding: 12px 20px;
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            box-shadow: 4px 4px 0 #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #000;
+            background: var(--accent-1);
+            color: #FFFFFF;
+        }
+
+        /* 作品展示样式 */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .portfolio-item {
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+            padding: 25px;
+            transition: all 0.2s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 #000;
+        }
+
+        .portfolio-item:nth-child(odd) {
+            background: var(--accent-4);
+        }
+
+        .portfolio-item:nth-child(even) {
+            background: var(--accent-3);
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.4em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .portfolio-item p {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .portfolio-tag {
+            padding: 5px 12px;
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* 书单样式 */
+        .book-list {
+            margin-top: 30px;
+        }
+
+        .book-item {
+            display: flex;
+            gap: 25px;
+            padding: 25px;
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+            margin-bottom: 25px;
+            transition: all 0.2s ease;
+        }
+
+        .book-item:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0 #000;
+        }
+
+        .book-item:nth-child(odd) {
+            background: var(--accent-4);
+        }
+
+        .book-item:nth-child(even) {
+            background: var(--accent-3);
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 160px;
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            box-shadow: 4px 4px 0 #000;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            font-weight: 900;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
+        .book-info h3 {
+            font-size: 1.5em;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .book-info .author {
+            font-weight: 700;
+            font-style: italic;
+            margin-bottom: 15px;
+            padding: 8px 15px;
+            background: #FFFFFF;
+            border: var(--border-width) solid #000;
+            display: inline-block;
+        }
+
+        .book-rating {
+            margin-top: 15px;
+            font-size: 1.5em;
+            letter-spacing: 5px;
+        }
+
+        .book-recommendation {
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--accent-1);
+            border: var(--border-width) solid #000;
+            box-shadow: var(--shadow-offset) var(--shadow-offset) 0 #000;
+            color: #FFFFFF;
+        }
+
+        .book-recommendation h3 {
+            font-size: 1.8em;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+
+        .book-recommendation p {
+            font-size: 1.2em;
+        }
+
+        /* 状态标签 */
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--accent-2);
+            border: var(--border-width) solid #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .nav-tab {
+                border-right: none;
+                border-bottom: var(--border-width) solid #000;
+                text-align: center;
+            }
+
+            .nav-tab:last-child {
+                border-bottom: none;
+            }
+
+            .hero-title {
+                font-size: 2.5em;
+                letter-spacing: 4px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2em;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .about-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .book-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .book-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="nav">
+            <ul class="nav-tabs">
+                <li class="nav-tab active" data-tab="home">首页</li>
+                <li class="nav-tab" data-tab="about">关于我</li>
+                <li class="nav-tab" data-tab="portfolio">我的作品</li>
+                <li class="nav-tab" data-tab="books">分享书单</li>
+            </ul>
+        </nav>
+
+        <!-- 内容区域 -->
+        <main class="content">
+            <!-- 首页 -->
+            <div id="home" class="tab-content active">
+                <div class="hero">
+                    <span class="hero-badge">👋 欢迎光临</span>
+                    <h1 class="hero-title">宋美玲</h1>
+                    <div class="hero-subtitle">新媒体编导 | 内容创作者 | 汽车营销专家</div>
+                    
+                    <div class="hero-intro">
+                        <p><strong>坐标：</strong>汽车行业新媒体赋能公司</p>
+                        <p><strong>日常：</strong>写脚本 · 分镜设计 · 选题策划 · 跟拍制作</p>
+                        <p><strong>目标：</strong>成为汽车行业内容营销专家 🚀</p>
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        <a class="cta-button" onclick="switchTab('about')">→ 了解更多</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 关于我 -->
+            <div id="about" class="tab-content">
+                <h1>关于我</h1>
+                
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>📝 我是谁</h3>
+                        <p>宋美玲，00 后新媒体编导，目前就职于汽车经销商新媒体赋能公司。</p>
+                        <p>相信好的内容能连接人与品牌，每天都在学习、创作和成长的路上。</p>
+                        <div style="margin-top: 15px;">
+                            <span class="status-badge">在职学习中</span>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <h3>🎯 核心工作</h3>
+                        <ul>
+                            <li>撰写创意脚本和分镜脚本</li>
+                            <li>策划选题方向和内容策略</li>
+                            <li>跟进拍摄和后期制作</li>
+                            <li>数据分析与优化迭代</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card">
+                        <h3>🚀 3 个月目标</h3>
+                        <ul>
+                            <li>整理 8 个项目文件 + 建立视频库</li>
+                            <li>拆解信息流短视频 SOP</li>
+                            <li>推进长信息流创作测试</li>
+                            <li>制作《新媒体编导课程》</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-card">
+                        <h3>💡 正在学习</h3>
+                        <ul>
+                            <li>汽车专业知识</li>
+                            <li>新媒体运营方法论</li>
+                            <li>OpenClaw 工具应用</li>
+                            <li>多平台竞品分析</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>技能装备</h2>
+                <div class="skill-tags">
+                    <span class="skill-tag">⚡ 脚本创作</span>
+                    <span class="skill-tag">⚡ 分镜设计</span>
+                    <span class="skill-tag">⚡ 内容策划</span>
+                    <span class="skill-tag">⚡ 视频制作</span>
+                    <span class="skill-tag">⚡ 数据分析</span>
+                    <span class="skill-tag">⚡ 新媒体运营</span>
+                    <span class="skill-tag">⚡ 汽车行业</span>
+                    <span class="skill-tag">⚡ OpenClaw</span>
+                    <span class="skill-tag">⚡ AI 工具</span>
+                    <span class="skill-tag">⚡ SOP 搭建</span>
+                </div>
+            </div>
+
+            <!-- 我的作品 -->
+            <div id="portfolio" class="tab-content">
+                <h1>我的作品</h1>
+                <p>这里展示我参与创作的部分作品和项目。</p>
+                <span class="status-badge">持续更新中</span>
+
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <h3>🎬 信息流短视频系列</h3>
+                        <p>为汽车品牌打造的信息流短视频，通过精准的内容策略和创意表达，实现高转化率。</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">#短视频</span>
+                            <span class="portfolio-tag">#信息流</span>
+                            <span class="portfolio-tag">#汽车营销</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>📊 新媒体 SOP 文档</h3>
+                        <p>系统化梳理短视频创作流程，从选题到发布的完整标准化操作指南。</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">#SOP</span>
+                            <span class="portfolio-tag">#流程优化</span>
+                            <span class="portfolio-tag">#知识沉淀</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>📚 新媒体编导课程</h3>
+                        <p>正在制作中的课程体系，分享新媒体内容创作的实战经验和方法论。</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">#课程开发</span>
+                            <span class="portfolio-tag">#知识分享</span>
+                            <span class="portfolio-tag">#教育培训</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>🔍 竞品分析报告</h3>
+                        <p>多平台竞品分析，洞察行业趋势和最佳实践，为内容策略提供数据支持。</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">#市场分析</span>
+                            <span class="portfolio-tag">#竞品研究</span>
+                            <span class="portfolio-tag">#数据驱动</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>📱 社交媒体内容矩阵</h3>
+                        <p>规划和管理多平台内容分发策略，实现品牌声量最大化。</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">#内容矩阵</span>
+                            <span class="portfolio-tag">#多平台运营</span>
+                            <span class="portfolio-tag">#品牌传播</span>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item">
+                        <h3>🤖 AI 工具应用案例</h3>
+                        <p>探索 AI 工具在内容创作中的应用，提升工作效率和创意质量。</p>
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">#AI 工具</span>
+                            <span class="portfolio-tag">#效率提升</span>
+                            <span class="portfolio-tag">#创新实践</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 分享书单 -->
+            <div id="books" class="tab-content">
+                <h1>分享书单</h1>
+                <p>阅读是成长的阶梯。这里分享一些对我影响深刻的书籍。</p>
+                <span class="status-badge">持续更新中</span>
+
+                <div class="book-list">
+                    <div class="book-item">
+                        <div class="book-cover">📖</div>
+                        <div class="book-info">
+                            <h3>文案训练手册</h3>
+                            <div class="author">作者：约瑟夫·休格曼</div>
+                            <p>文案写作的经典之作，教会我如何写出打动人心的文字。每一个新媒体人都应该读一读。</p>
+                            <div class="book-rating">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="book-item">
+                        <div class="book-cover">🎯</div>
+                        <div class="book-info">
+                            <h3>定位</h3>
+                            <div class="author">作者：艾·里斯 / 杰克·特劳特</div>
+                            <p>营销领域的里程碑作品，帮助我理解如何在用户心智中占据独特位置。</p>
+                            <div class="book-rating">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="book-item">
+                        <div class="book-cover">💡</div>
+                        <div class="book-info">
+                            <h3>创意之道</h3>
+                            <div class="author">作者：英国 D&AD 机构</div>
+                            <p>36 位全球顶尖创意人的经验分享，每次阅读都有新的启发。</p>
+                            <div class="book-rating">★★★★☆</div>
+                        </div>
+                    </div>
+
+                    <div class="book-item">
+                        <div class="book-cover">📊</div>
+                        <div class="book-info">
+                            <h3>增长黑客</h3>
+                            <div class="author">作者：肖恩·埃利斯</div>
+                            <p>数据驱动的营销方法论，让我学会用实验和迭代的方式优化内容效果。</p>
+                            <div class="book-rating">★★★★☆</div>
+                        </div>
+                    </div>
+
+                    <div class="book-item">
+                        <div class="book-cover">🎬</div>
+                        <div class="book-info">
+                            <h3>电影剧本写作基础</h3>
+                            <div class="author">作者：悉德·菲尔德</div>
+                            <p>虽然是讲电影剧本，但对短视频脚本创作同样有极大的指导意义。</p>
+                            <div class="book-rating">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="book-item">
+                        <div class="book-cover">🚀</div>
+                        <div class="book-info">
+                            <h3>精益创业</h3>
+                            <div class="author">作者：埃里克·莱斯</div>
+                            <p>MVP 思维和快速迭代的理念，深深影响了我的工作方式。</p>
+                            <div class="book-rating">★★★★☆</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-recommendation">
+                    <h3>📚 想推荐一本书？</h3>
+                    <p>欢迎和我交流你的书单！好的书籍值得被更多人看到。</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Tab 切换功能
+        function switchTab(tabId) {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                switchTab(tabId);
+            });
+        });
+
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                switchTab(hash);
+            }
+        });
+    </script>
+</body>
+</html>
